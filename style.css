@@ -1,0 +1,81 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9e3e3; /* Cor de fundo suave */
+    font-family: 'Arial', sans-serif;
+    flex-direction: column; /* Para manter a coluna padrão */
+    text-align: center; /* Centraliza o texto no corpo */
+}
+
+.container {
+    max-width: 90%; /* Limita a largura em telas menores para não ultrapassar a borda */
+    padding: 20px;
+    box-sizing: border-box; /* Garante que o padding não adicione largura extra */
+}
+
+h1 {
+    font-size: 2.5em; /* Tamanho da fonte para telas maiores */
+    color: #d32f2f;
+}
+
+.buttons {
+    display: flex; /* Transforma os botões em flexbox */
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    margin-top: 20px;
+    gap: 15px; /* Adiciona um espaço entre os botões */
+}
+
+.yes-button, .no-button {
+    font-size: 1.5em; /* Mantém o tamanho da fonte */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave para o hover */
+}
+
+.yes-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.yes-button:hover {
+    background-color: #45a049; /* Cor mais escura no hover */
+}
+
+.no-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.no-button:hover {
+    background-color: #e53935; /* Cor mais escura no hover */
+}
+
+.gif_container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* --- Media Queries para Telas Menores (smartphones) --- */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em; /* Diminui o tamanho do h1 para telas menores */
+    }
+
+    .buttons {
+        flex-direction: column; /* Empilha os botões verticalmente */
+        align-items: center; /* Centraliza os botões empilhados */
+    }
+
+    .yes-button, .no-button {
+        width: 80%; /* Faz os botões ocuparem mais espaço na tela */
+        font-size: 1.2em; /* Diminui o tamanho da fonte dos botões */
+        margin: 5px 0; /* Adiciona um pequeno espaço entre os botões */
+    }
+}
