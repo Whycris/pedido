@@ -19,7 +19,9 @@ async function registrarResposta(resposta){
             resposta: resposta,
             data: new Date()
         });
-    }catch(e){}
+    }catch(e){
+        console.error(e);
+    }
 }
 
 (async function checkForUpdates() {
@@ -28,18 +30,12 @@ async function registrarResposta(resposta){
 
     try {
         const response = await fetch(versionUrl);
-        if (!response.ok) {
-            console.warn("Could not fetch version information.");
-            return;
-        }
-        const data = await response.json();
-        const latestVersion = data.version;
-        const updateMessage = data.updateMessage;
+        if (!response.ok) return;
 
-        if (currentVersion !== latestVersion) {
-            alert(updateMessage);
-        } else {
-            console.log("You are using the latest version.");
+        const data = await response.json();
+
+        if (currentVersion !== data.version) {
+            alert(data.updateMessage);
         }
     } catch (error) {
         console.error("Error checking for updates:", error);
@@ -63,10 +59,11 @@ let messageIndex = 0;
 
 window.handleNoClick = async function() {
 
-    await registrarResposta("nao");
+    registrarResposta("nao");
 
     const noButton = document.querySelector('.no-button');
     const yesButton = document.querySelector('.yes-button');
+
     noButton.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
 
@@ -76,7 +73,7 @@ window.handleNoClick = async function() {
 
 window.handleYesClick = async function() {
 
-    await registrarResposta("sim");
+    registrarResposta("sim");
 
     window.location.href = "yes_page.html";
 }
