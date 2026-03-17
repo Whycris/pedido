@@ -1,22 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu pedido</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu pedido</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Quer ser meu namorado?</h1>
-        <div class="buttons">
-            <button class="yes-button" onclick="handleYesClick()">Yes</button>
-            <button class="no-button" onclick="handleNoClick()">No</button>
-        </div>
-        <div class="gif_container">
-            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute GIF">
-        </div>
+
+<div class="container">
+    <h1>Quer ser meu namorado?</h1>
+
+    <div class="buttons">
+        <button class="yes-button" onclick="handleYesClick()">Yes</button>
+        <button class="no-button" onclick="handleNoClick()">No</button>
     </div>
-    <script src="script.js"></script>
+
+    <div class="gif_container">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif">
+    </div>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCOy6fNOjxaQP7Si8GRYUdH3FJ6K84K-p8",
+  authDomain: "pedido-ao-carlos.firebaseapp.com",
+  projectId: "pedido-ao-carlos",
+  storageBucket: "pedido-ao-carlos.firebasestorage.app",
+  messagingSenderId: "37831831117",
+  appId: "1:37831831117:web:0974089880024868fdb604"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.handleYesClick = async function () {
+
+  await addDoc(collection(db, "respostas"), {
+    resposta: "sim",
+    data: new Date()
+  });
+
+  alert("Resposta enviada 💖");
+}
+
+window.handleNoClick = async function () {
+
+  await addDoc(collection(db, "respostas"), {
+    resposta: "nao",
+    data: new Date()
+  });
+
+  alert("Resposta enviada 💔");
+}
+
+</script>
+
 </body>
 </html>
